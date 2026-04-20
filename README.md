@@ -373,6 +373,12 @@ CSV 채널은 다운받은 파일을 `rocketsell import`에 던지면 자동 감
   coupon create <channel> --name <이름> --type <타입> --value N
   coupon issue <channel> <couponId> --members <id,...>
 
+── 리포트
+  report today [--period <기간>]  전 채널 통합 매출 요약 (기본: 오늘)
+  report --by <dimension> [옵션]  다차원 판매 리포트
+    dimension: category | productline | product | channel | sku
+    --period: today|7d|30d|this-month|last-month|3m|all
+
 ── 홍보
   promo ad-spy <키워드>           Facebook 경쟁 광고 분석
   promo viral-check <키워드>      TikTok 바이럴 확인
