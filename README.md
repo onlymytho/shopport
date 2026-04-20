@@ -1,17 +1,17 @@
 <div align="center">
 
 ```
- ██████╗  ██████╗  ██████╗██╗  ██╗███████╗████████╗███████╗███████╗██╗     ██╗     
- ██╔══██╗██╔═══██╗██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝██╔════╝██╔════╝██║     ██║     
- ██████╔╝██║   ██║██║     █████╔╝ █████╗     ██║   ███████╗█████╗  ██║     ██║     
- ██╔══██╗██║   ██║██║     ██╔═██╗ ██╔══╝     ██║   ╚════██║██╔══╝  ██║     ██║     
- ██║  ██║╚██████╔╝╚██████╗██║  ██╗███████╗   ██║   ███████║███████╗███████╗███████╗
- ╚═╝  ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝
+ ███████╗██╗  ██╗ ██████╗ ██████╗ ██████╗  ██████╗ ██████╗ ████████╗
+ ██╔════╝██║  ██║██╔═══██╗██╔══██╗██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝
+ ███████╗███████║██║   ██║██████╔╝██████╔╝██║   ██║██████╔╝   ██║   
+ ╚════██║██╔══██║██║   ██║██╔═══╝ ██╔═══╝ ██║   ██║██╔══██╗   ██║   
+ ███████║██║  ██║╚██████╔╝██║     ██║     ╚██████╔╝██║  ██║   ██║   
+ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
 ```
 
 ### AI를 위한 이커머스 운영도구
 
-**사장님이 뽑으려던 이커머스 운영 담당자, rocketsell이 대신합니다.**
+**사장님이 뽑으려던 이커머스 운영 담당자, shopport가 대신합니다.**
 
 쿠팡 · 스마트스토어 · 카페24 · Shopify
 
@@ -33,7 +33,7 @@ macOS · Linux 지원 · bun / npm 자동 감지
 - 신상품 등록할 때마다 채널마다 같은 내용을 반복 입력하고 있다면
 - 주문 CSV를 취합하는 데 매일 30분을 쓰고 있다면
 
-#### 이제 여러분이 사용하던 AI Agent가 rocketsell로 모든 걸 대신할 수 있습니다.
+#### 이제 여러분이 사용하던 AI Agent가 shopport로 모든 걸 대신할 수 있습니다.
 
 | # | 담당자 | 대체하는 작업 |
 |---|--------|-------------|
@@ -52,9 +52,9 @@ macOS · Linux 지원 · bun / npm 자동 감지
 반복 작업을 터미널 명령어 하나로 끝냅니다.
 
 ```sh
-rocketsell order list          # 전 채널 주문 통합 조회
-rocketsell settlement summary  # 채널별 정산 합계
-rocketsell product sync        # 가격·재고 전 채널 동기화
+sppt order list          # 전 채널 주문 통합 조회
+sppt settlement summary  # 채널별 정산 합계
+sppt product sync        # 가격·재고 전 채널 동기화
 ```
 
 ### 2. AI 어시스턴트 — Claude / Claude Code / Codex 에서 자연어로
@@ -62,10 +62,10 @@ rocketsell product sync        # 가격·재고 전 채널 동기화
 설치 후 AI 어시스턴트에게 자연어로 사용을 부탁합니다.
 
 ```
-"OO카테고리 이번 달 얼마 팔렸어?"    # rocketsell report --by category --period this-month
-"이번 주 정산 예정금액 얼마야?"       # rocketsell settlement schedule
-"오늘 매출 얼마야?"                   # rocketsell report revenue
-"마진율 낮은 SKU 뽑아줘"             # rocketsell report --by sku --metric margin
+"OO카테고리 이번 달 얼마 팔렸어?"    # sppt report --by category --period this-month
+"이번 주 정산 예정금액 얼마야?"       # sppt settlement schedule
+"오늘 매출 얼마야?"                   # sppt report revenue
+"마진율 낮은 SKU 뽑아줘"             # sppt report --by sku --metric margin
 ```
 
 MCP 없이 Direct API 호출 — 빠르고 토큰 효율적.
@@ -79,7 +79,7 @@ curl -fsSL https://rocketsell.vercel.app/agent-install.txt
 
 사람 개입 없이 소싱부터 발주·송장 등록까지 에이전트가 직접 운영합니다.
 ```
-"rocketsell로 내 커머스 운영 매니저가 되어줘"
+"shopport로 내 커머스 운영 매니저가 되어줘"
 ```
 
 ---
@@ -102,7 +102,7 @@ curl -fsSL https://rocketsell.vercel.app/agent-install.txt
                       원가 입력 → 채널·SKU별 마진율·공헌이익 자동 계산
 ```
 
-수동 운영 3시간 → rocketsell 10분.
+수동 운영 3시간 → shopport 10분.
 
 ---
 
@@ -113,13 +113,13 @@ curl -fsSL https://rocketsell.vercel.app/agent-install.txt
 curl -fsSL https://rocketsell.vercel.app/api/v2/cli/install | bash
 
 # npm
-npm install -g rocketsell
+npm install -g shopport
 
 # bun
-bun add -g rocketsell
+bun add -g shopport
 ```
 
-설정 파일은 `~/.rocketsell/config.json`에 로컬 저장됩니다.
+설정 파일은 `~/.shopport/config.json`에 로컬 저장됩니다.
 
 ---
 
@@ -127,16 +127,16 @@ bun add -g rocketsell
 
 ```sh
 # 1. 채널 인증 설정 (5분)
-rocketsell init
+sppt init
 
 # 2. 전 채널 주문 조회
-rocketsell order list
+sppt order list
 
 # 3. 전체 대시보드
-rocketsell dashboard
+sppt dashboard
 
 # 4. AI용 스토어 브리핑 (Claude Code 등에서 context 파악용)
-rocketsell context
+sppt context
 ```
 
 ---
@@ -159,11 +159,11 @@ rocketsell context
 
 채널별 주문 CSV 개별 다운로드 → 채널마다 다른 컬럼 양식 수동 정리. **매일 30분.**
 
-**rocketsell로 바뀌는 것**
+**shopport로 바뀌는 것**
 
 ```sh
-rocketsell order list <channel> [--days N]   # 전 채널 주문 통합 조회
-rocketsell import <file>                     # CSV/XLS 자동 감지 → 채널 판별 후 임포트
+sppt order list <channel> [--days N]   # 전 채널 주문 통합 조회
+sppt import <file>                     # CSV/XLS 자동 감지 → 채널 판별 후 임포트
 ```
 
 | 채널 | API | CSV |
@@ -177,7 +177,7 @@ rocketsell import <file>                     # CSV/XLS 자동 감지 → 채널 
 | 브론테 | — | ✅ 주문 |
 | EZ어드민 | — | ✅ 주문·재고 |
 
-채널 API 실시간 직연동. 채널별 CSV는 다운받은 파일을 AI에게 던져 `rocketsell import`을 실행하면 채널을 자동 감지해 통합 처리합니다.
+채널 API 실시간 직연동. 채널별 CSV는 다운받은 파일을 AI에게 던져 `sppt import`을 실행하면 채널을 자동 감지해 통합 처리합니다.
 
 > *"쿠팡, 스마트스토어, 카페24 주문 취합하는 데 매일 30분 쓰고 계신가요? 명령 한 번으로 끝납니다."*
 
@@ -189,13 +189,13 @@ rocketsell import <file>                     # CSV/XLS 자동 감지 → 채널 
 
 채널별 정산 내역 개별 다운로드 → 수수료 구조 파악 → 엑셀에서 직접 계산 → 입금 스케쥴 관리 **주 3~4시간.**
 
-**rocketsell로 바뀌는 것**
+**shopport로 바뀌는 것**
 
 ```sh
-rocketsell settlement summary [channel] [--days N]   # 채널별 정산 합계
-rocketsell settlement list [channel]                 # 정산 목록
-rocketsell settlement calc <channel> <orderId>       # 수수료·실수령액 계산
-rocketsell settlement schedule                       # 입금 예정 스케줄
+sppt settlement summary [channel] [--days N]   # 채널별 정산 합계
+sppt settlement list [channel]                 # 정산 목록
+sppt settlement calc <channel> <orderId>       # 수수료·실수령액 계산
+sppt settlement schedule                       # 입금 예정 스케줄
 ```
 
 ```
@@ -212,7 +212,7 @@ rocketsell settlement schedule                       # 입금 예정 스케줄
 
 쿠팡·스마트스토어·카페24 수수료를 자동 파싱해 실수령액을 계산합니다. 입금 예정일을 채널별로 미리 확인하고, 누락·미입금 정산은 자동으로 플래그.
 
-> *"정산 엑셀 만지는 데 주 3~4시간 쓰고 계시면, 그거 rocketsell이 5분으로 줄여드립니다."*
+> *"정산 엑셀 만지는 데 주 3~4시간 쓰고 계시면, 그거 shopport가 5분으로 줄여드립니다."*
 
 ---
 
@@ -222,15 +222,15 @@ rocketsell settlement schedule                       # 입금 예정 스케줄
 
 채널별 매출 CSV 개별 다운로드 → 엑셀 피벗으로 일·주·월별 집계 → 채널/SKU/카테고리별 성과 비교 → 경영진 보고용 자료 재가공.
 
-**rocketsell로 바뀌는 것**
+**shopport로 바뀌는 것**
 
 ```sh
-rocketsell report revenue                                       # 오늘 전 채널 통합 매출
-rocketsell report revenue --period this-month                   # 이번 달 전 채널 통합 매출
-rocketsell report --by channel --period this-month            # 채널별 이번 달 매출
-rocketsell report --by sku --period 7d --metric margin        # SKU별 마진 순위
-rocketsell report --by category --period last-month --top 10  # 카테고리 TOP 10
-rocketsell report --by productline --period 3m                # 제품라인별 3개월 추이
+sppt report revenue                                       # 오늘 전 채널 통합 매출
+sppt report revenue --period this-month                   # 이번 달 전 채널 통합 매출
+sppt report --by channel --period this-month            # 채널별 이번 달 매출
+sppt report --by sku --period 7d --metric margin        # SKU별 마진 순위
+sppt report --by category --period last-month --top 10  # 카테고리 TOP 10
+sppt report --by productline --period 3m                # 제품라인별 3개월 추이
 ```
 
 채널·SKU·카테고리·제품라인 단위로 기간을 지정해 판매량·매출·마진·공헌이익을 한 번에 뽑아냅니다.
@@ -247,11 +247,11 @@ rocketsell report --by productline --period 3m                # 제품라인별 
 
 원가·수수료·광고비·물류비 채널별 수동 입력 → 채널별 마진율 엑셀 수식 관리 → 수익성 낮은 채널·SKU 파악.
 
-**rocketsell로 바뀌는 것**
+**shopport로 바뀌는 것**
 
 ```sh
-rocketsell cost set <sku>    # SKU별 원가 등록
-rocketsell cost list         # 채널·SKU별 공헌이익 현황
+sppt cost set <sku>    # SKU별 원가 등록
+sppt cost list         # 채널·SKU별 공헌이익 현황
 ```
 
 원가 데이터를 깔끔하게 정리하지 않아도 됩니다. 공급사에서 받은 엑셀 파일 그대로 AI에게 붙여넣으면, AI가 SKU를 매핑하고 원가를 파싱해 `cost set` 커맨드로 자동 업로드합니다.
@@ -268,18 +268,18 @@ rocketsell cost list         # 채널·SKU별 공헌이익 현황
 
 신상품 쿠팡에 입력 → 스마트스토어에 또 입력 → 카페24에 또 입력 → 가격·재고 변경 시 채널마다 개별 수정.
 
-**rocketsell로 바뀌는 것**
+**shopport로 바뀌는 것**
 
 ```sh
-rocketsell product register --all-channels --file product.json   # 전 채널 일괄 등록
-rocketsell product sync                                          # 가격·재고 동기화
-rocketsell product seo set <channel> <id> --title <t>            # SEO 메타 관리
-rocketsell product keyword set <channel> <id> --tags <kw>        # 검색 키워드 관리
+sppt product register --all-channels --file product.json   # 전 채널 일괄 등록
+sppt product sync                                          # 가격·재고 동기화
+sppt product seo set <channel> <id> --title <t>            # SEO 메타 관리
+sppt product keyword set <channel> <id> --tags <kw>        # 검색 키워드 관리
 ```
 
 상품 마스터 한 번 입력으로 채널별 양식을 자동 변환해 일괄 배포합니다.
 
-채널마다 필수 입력 항목이 다르고, 브랜드명·용량·성분 같은 항목은 직접 찾아 입력하기 번거롭습니다. rocketsell은 AI가 상품 상세페이지 이미지를 직접 읽어 브랜드명·규격·고시정보 등 누락 항목을 자동으로 채워 넣습니다.
+채널마다 필수 입력 항목이 다르고, 브랜드명·용량·성분 같은 항목은 직접 찾아 입력하기 번거롭습니다. shopport는 AI가 상품 상세페이지 이미지를 직접 읽어 브랜드명·규격·고시정보 등 누락 항목을 자동으로 채워 넣습니다.
 
 > *"한 번 입력하면 전 채널에 동시에 올라갑니다."*
 
@@ -300,7 +300,7 @@ rocketsell product keyword set <channel> <id> --tags <kw>        # 검색 키워
 | <img src="https://www.google.com/s2/favicons?domain=bronte.co.kr&sz=16" width="16"/> 브론테 | CSV | ✅ | — | — | — | — | — | — |
 | EZ어드민 | CSV | ✅ | — | ✅ | — | — | — | — |
 
-CSV 채널은 다운받은 파일을 `rocketsell import`에 던지면 자동 감지해 처리합니다.
+CSV 채널은 다운받은 파일을 `sppt import`에 던지면 자동 감지해 처리합니다.
 
 ### 트렌드 · 시장 데이터
 

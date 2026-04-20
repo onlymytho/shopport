@@ -12,10 +12,10 @@
 
 ## Prerequisites
 
-- `rocketsell` CLI 설치
+- `sppt` CLI 설치
 - Apify API Token 설정 (ad-spy, viral-check, influencer에 필요):
   ```bash
-  rocketsell config set apify apiToken <YOUR_APIFY_TOKEN>
+  sppt config set apify apiToken <YOUR_APIFY_TOKEN>
   ```
   발급: https://console.apify.com/settings/integrations
 
@@ -26,7 +26,7 @@
 소싱 전이라면 먼저 키워드 수요를 확인합니다.
 
 ```bash
-rocketsell trend keyword <키워드>
+sppt trend keyword <키워드>
 ```
 
 검색량이 월 1,000 이상, 최근 트렌드 상승 중인 키워드를 선택합니다.
@@ -36,7 +36,7 @@ rocketsell trend keyword <키워드>
 ### 2. 경쟁 광고 분석 (Facebook Ad Library)
 
 ```bash
-rocketsell promo ad-spy "<키워드>" --country KR --max 30
+sppt promo ad-spy "<키워드>" --country KR --max 30
 ```
 
 결과에서 주목할 포인트:
@@ -51,7 +51,7 @@ rocketsell promo ad-spy "<키워드>" --country KR --max 30
 ### 3. TikTok 바이럴 강도 확인
 
 ```bash
-rocketsell promo viral-check "<키워드>" --max 30
+sppt promo viral-check "<키워드>" --max 30
 ```
 
 결과 해석:
@@ -69,14 +69,14 @@ rocketsell promo viral-check "<키워드>" --max 30
 
 ```bash
 # 소싱 상품 기반
-rocketsell promo copy "<키워드>" \
+sppt promo copy "<키워드>" \
   --platform smartstore \
   --price <판매가> \
   --original-price <정가> \
   --features "특징1,특징2,특징3"
 
 # 소싱 채널 상품 직접 연동
-rocketsell promo copy "<키워드>" \
+sppt promo copy "<키워드>" \
   --source domeggook \
   --product-id <ID> \
   --platform cafe24
@@ -110,7 +110,7 @@ CLI 결과 + ad-spy Winning Ad 카피를 참고해서 다음 프롬프트로 더
 마이크로 인플루언서(1K~50K) 협업을 원할 때:
 
 ```bash
-rocketsell promo influencer "<키워드>" \
+sppt promo influencer "<키워드>" \
   --min-followers 3000 \
   --max-followers 30000 \
   --csv influencers.csv

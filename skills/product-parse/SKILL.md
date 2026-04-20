@@ -10,7 +10,7 @@
 
 ## Prerequisites
 
-- 주문 데이터가 임포트되어 있어야 함 (`rocketsell import <file>` 또는 API 동기화)
+- 주문 데이터가 임포트되어 있어야 함 (`sppt import <file>` 또는 API 동기화)
 - 상품 분류 규칙 파일이 있으면 더 정확함 (없으면 LLM이 자체 판단)
 
 ## Steps
@@ -20,7 +20,7 @@
 먼저 현재 상태를 파악합니다.
 
 ```bash
-rocketsell product unmapped
+sppt product unmapped
 ```
 
 미매핑 상품명이 몇 건인지 확인합니다. 이미 전부 매핑되어 있으면 완료.
@@ -28,20 +28,20 @@ rocketsell product unmapped
 ### 2. 분류 규칙 확인
 
 ```bash
-rocketsell product rules
+sppt product rules
 ```
 
-`~/.rocketsell/product-rules.md` 파일이 있는지 확인합니다.
+`~/.shopport/product-rules.md` 파일이 있는지 확인합니다.
 
 - **파일이 있으면**: 내용을 읽고 규칙을 이해합니다.
 - **파일이 없으면**: 사용자에게 물어봅니다:
   - "상품 분류 규칙이 있나요? (카테고리, 제품라인 등)"
-  - 사용자가 알려주면 `~/.rocketsell/product-rules.md`에 저장합니다.
+  - 사용자가 알려주면 `~/.shopport/product-rules.md`에 저장합니다.
   - 없으면 상품명에서 자체 판단합니다.
 
 ### 3. 상품명 해체
 
-`rocketsell product unmapped`의 결과 목록을 가져온 후, 분류 규칙을 참고하여 각 상품명을 해체합니다.
+`sppt product unmapped`의 결과 목록을 가져온 후, 분류 규칙을 참고하여 각 상품명을 해체합니다.
 
 #### 해체 결과 구조
 
@@ -77,12 +77,12 @@ rocketsell product rules
 
 해체 결과를 카탈로그에 저장합니다. 저장은 CLI의 product-catalog-store를 통해 합니다.
 
-해체 결과를 `~/.rocketsell/imports/product-catalog.jsonl`에 저장하려면,
+해체 결과를 `~/.shopport/imports/product-catalog.jsonl`에 저장하려면,
 각 엔트리를 JSON으로 만들어 파일에 append 합니다:
 
 ```bash
 # 예시: 한 줄씩 append
-echo '{"sku":"AB-MC20","brand":"알텐바흐","productLine":"316Ti","category":"냄비","productName":"멀티쿠커 편수","option":"20cm","rawNames":["[알텐바흐] 316Ti 올인원 멀티쿠커 편수 20cm"],"confidence":"llm","createdAt":"2026-04-17T..."}' >> ~/.rocketsell/imports/product-catalog.jsonl
+echo '{"sku":"AB-MC20","brand":"알텐바흐","productLine":"316Ti","category":"냄비","productName":"멀티쿠커 편수","option":"20cm","rawNames":["[알텐바흐] 316Ti 올인원 멀티쿠커 편수 20cm"],"confidence":"llm","createdAt":"2026-04-17T..."}' >> ~/.shopport/imports/product-catalog.jsonl
 ```
 
 또는 Node.js 스크립트를 작성해서 일괄 저장할 수 있습니다.
@@ -90,12 +90,12 @@ echo '{"sku":"AB-MC20","brand":"알텐바흐","productLine":"316Ti","category":"
 ### 5. 검증
 
 ```bash
-rocketsell product catalog
+sppt product catalog
 ```
 
 저장된 카탈로그를 조회하여 결과를 확인합니다.
 
-다시 `rocketsell product unmapped`를 실행하여 미매핑 상품이 0건인지 확인합니다.
+다시 `sppt product unmapped`를 실행하여 미매핑 상품이 0건인지 확인합니다.
 
 ### 6. 분석 활용
 
@@ -110,5 +110,5 @@ rocketsell product catalog
 
 - 규칙 파일은 자연어로 자유롭게 작성하세요. 이 스킬이 읽고 해석합니다.
 - 한번 매핑된 상품명은 캐시되어 다음에는 자동 적용됩니다.
-- 새로운 상품이 추가되면 `rocketsell product unmapped`로 확인 후 추가 해체합니다.
+- 새로운 상품이 추가되면 `sppt product unmapped`로 확인 후 추가 해체합니다.
 - 잘못된 매핑은 `product-catalog.jsonl`을 직접 수정하거나, 다시 해체할 수 있습니다.

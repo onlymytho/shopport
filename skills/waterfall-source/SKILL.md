@@ -10,7 +10,7 @@
 ## Prerequisites
 
 - 최소 2개 이상 소싱 채널 설정
-- `rocketsell config list`로 소싱 채널 확인
+- `sppt config list`로 소싱 채널 확인
 
 ## Steps
 
@@ -21,13 +21,13 @@
 **비용 절약 모드 (기본)** — 첫 유효 결과에서 중단:
 
 ```bash
-rocketsell source search domeggook "<keyword>" --waterfall --strategy first
+sppt source search domeggook "<keyword>" --waterfall --strategy first
 ```
 
 **최적 품질 모드** — 3채널 전부 검색 후 스코어 비교:
 
 ```bash
-rocketsell source search domeggook "<keyword>" --waterfall --strategy best
+sppt source search domeggook "<keyword>" --waterfall --strategy best
 ```
 
 워터폴 순서: domeggook(도매매) → specialoffer → cjdropshipping (비용 오름차순)
@@ -39,7 +39,7 @@ rocketsell source search domeggook "<keyword>" --waterfall --strategy best
 워터폴 결과에서 선택한 상품의 상세 정보를 확인합니다:
 
 ```bash
-rocketsell source detail <channel> <productId>
+sppt source detail <channel> <productId>
 ```
 
 ### 3. 결과 요약

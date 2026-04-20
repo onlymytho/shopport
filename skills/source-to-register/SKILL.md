@@ -9,15 +9,15 @@
 
 ## Prerequisites
 
-- 최소 1개 소싱 채널 설정: `rocketsell config get domemae`
-- 최소 1개 판매 채널 설정: `rocketsell config get cafe24`
+- 최소 1개 소싱 채널 설정: `sppt config get domemae`
+- 최소 1개 판매 채널 설정: `sppt config get cafe24`
 
 ## Steps
 
 ### 1. 소싱 채널에서 상품 검색
 
 ```bash
-rocketsell source search <sourceChannel> "<keyword>"
+sppt source search <sourceChannel> "<keyword>"
 ```
 
 결과에서 상품 목록이 표시됩니다. 사용자에게 어떤 상품을 선택할지 확인합니다.
@@ -27,7 +27,7 @@ rocketsell source search <sourceChannel> "<keyword>"
 ### 2. 상품 상세 조회
 
 ```bash
-rocketsell source detail <sourceChannel> <productId>
+sppt source detail <sourceChannel> <productId>
 ```
 
 도매가(wholesalePrice), 최소주문수량(minOrderQty), 옵션, 이미지 URL을 확인합니다.
@@ -56,12 +56,12 @@ sellingPrice = wholesalePrice × 마진배수 + 배송비
 }
 ```
 
-JSON 파일을 `/tmp/rocketsell-register-<timestamp>.json`에 저장합니다.
+JSON 파일을 `/tmp/shopport-register-<timestamp>.json`에 저장합니다.
 
 ### 4. 판매 채널에 등록
 
 ```bash
-rocketsell product register <sellingChannel> --file /tmp/rocketsell-register-<timestamp>.json
+sppt product register <sellingChannel> --file /tmp/shopport-register-<timestamp>.json
 ```
 
 등록 결과에서 채널 상품 ID를 확인합니다.
@@ -69,7 +69,7 @@ rocketsell product register <sellingChannel> --file /tmp/rocketsell-register-<ti
 ### 5. 등록 확인
 
 ```bash
-rocketsell product get <sellingChannel> <productId>
+sppt product get <sellingChannel> <productId>
 ```
 
 ## Error handling

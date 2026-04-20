@@ -17,7 +17,7 @@
 ### 1. 소싱 상품 현재 가격 조회
 
 ```bash
-rocketsell source detail <sourceChannel> <sourceProductId>
+sppt source detail <sourceChannel> <sourceProductId>
 ```
 
 도매가(wholesalePrice)를 확인합니다.
@@ -25,7 +25,7 @@ rocketsell source detail <sourceChannel> <sourceProductId>
 ### 2. 판매 상품 현재 가격 조회
 
 ```bash
-rocketsell product get <sellingChannel> <sellingProductId>
+sppt product get <sellingChannel> <sellingProductId>
 ```
 
 현재 판매가를 확인합니다.
@@ -59,13 +59,13 @@ rocketsell product get <sellingChannel> <sellingProductId>
 # /tmp/price-update.json
 # { "variants": [{ "id": "...", "sku": "...", "optionLabel": "기본", "price": <원가>, "salePrice": <제안가>, "stockQuantity": <현재재고> }] }
 
-rocketsell product update <sellingChannel> <productId> --file /tmp/price-update.json
+sppt product update <sellingChannel> <productId> --file /tmp/price-update.json
 ```
 
 또는 가격 룰을 직접 적용하려면 `--markup` 플래그를 활용합니다:
 
 ```bash
-rocketsell product register <sellingChannel> --file /tmp/product.json --markup 1.3 --margin-floor 15
+sppt product register <sellingChannel> --file /tmp/product.json --markup 1.3 --margin-floor 15
 ```
 
 ### 5. 복수 상품 모니터링

@@ -16,7 +16,7 @@
 - `status --suppliers` 공급사 신뢰도 스코어 표
 - `agent-install.txt` 엔드포인트 (AI Agent용 설치 가이드)
 - PostgreSQL 데이터 레이어 — operations log, product mapping
-- 웹 대시보드 (`rocketsell dashboard`)
+- 웹 대시보드 (`sppt dashboard`)
 
 ### Changed
 - 소싱 채널 포지셔닝: 도매꾹 → 도매매 중심으로 변경 (위탁 전용)
@@ -35,6 +35,6 @@
 - 판매 채널: Cafe24, Coupang, SmartStore, Shopify
 - 소싱 채널: 도매매(domeggook), 특가몰(specialoffer), CJ Dropshipping
 - Skills: `source-to-register`, `order-fulfill`, `inventory-sync`, `waterfall-source`, `price-monitor`
-- `rocketsell init` 인터랙티브 온보딩 wizard
+- `sppt init` 인터랙티브 온보딩 wizard
 - Rate limiter (채널별 요청 제한 자동 처리)
-- `~/.rocketsell/config.json` credentials 로컬 저장
+- `~/.shopport/config.json` credentials 로컬 저장

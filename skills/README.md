@@ -1,4 +1,4 @@
-# rocketsell Skills
+# shopport Skills
 
 > Claude Code가 읽고 실행하는 커머스 운영 워크플로우 스킬
 
@@ -6,12 +6,12 @@
 
 ### Claude Code에서
 ```
-/skill install rocketsell
+/skill install shopport
 ```
 
 또는 수동 설치:
 ```bash
-git clone https://github.com/onlymytho/rocketsell ~/.claude/skills/rocketsell
+git clone https://github.com/onlymytho/shopport ~/.claude/skills/shopport
 ```
 
 ### 스킬 목록
@@ -26,8 +26,8 @@ git clone https://github.com/onlymytho/rocketsell ~/.claude/skills/rocketsell
 
 ## 전제 조건
 
-- `rocketsell` CLI 설치
-- 최소 1개 판매 채널 + 1개 소싱 채널 설정 (`rocketsell init`)
+- `sppt` CLI 설치
+- 최소 1개 판매 채널 + 1개 소싱 채널 설정 (`sppt init`)
 
 ## 스킬 구조
 

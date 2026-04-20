@@ -10,19 +10,19 @@
 ## Prerequisites
 
 - 최소 2개 이상 판매 채널 설정
-- `rocketsell status`로 채널 연결 상태 확인
+- `sppt status`로 채널 연결 상태 확인
 
 ## Steps
 
 ### 1. 재고 분배 계획 수립
 
 ```bash
-rocketsell inventory plan <totalStock> [sku]
+sppt inventory plan <totalStock> [sku]
 ```
 
 예시:
 ```bash
-rocketsell inventory plan 500 SKU-001
+sppt inventory plan 500 SKU-001
 ```
 
 출력 예시:
@@ -45,10 +45,10 @@ shopify:      45 (10%)
 각 채널에 순차적으로 재고를 동기화합니다:
 
 ```bash
-rocketsell inventory sync cafe24 <productId> 135
-rocketsell inventory sync coupang <productId> 180
-rocketsell inventory sync smartstore <productId> 90
-rocketsell inventory sync shopify <productId> 45
+sppt inventory sync cafe24 <productId> 135
+sppt inventory sync coupang <productId> 180
+sppt inventory sync smartstore <productId> 90
+sppt inventory sync shopify <productId> 45
 ```
 
 채널별 재고 업데이트 방식 차이:
@@ -59,7 +59,7 @@ rocketsell inventory sync shopify <productId> 45
 ### 3. 동기화 확인
 
 ```bash
-rocketsell product get <channel> <productId>
+sppt product get <channel> <productId>
 ```
 
 각 채널에서 재고가 올바르게 반영되었는지 확인합니다.

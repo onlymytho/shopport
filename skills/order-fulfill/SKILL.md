@@ -10,14 +10,14 @@
 ## Prerequisites
 
 - 최소 1개 판매 채널 설정 완료
-- `rocketsell status`로 채널 연결 상태 확인
+- `sppt status`로 채널 연결 상태 확인
 
 ## Steps
 
 ### 1. 신규 주문 조회
 
 ```bash
-rocketsell order list <channel>
+sppt order list <channel>
 ```
 
 기본적으로 최근 7일간 주문을 조회합니다.
@@ -31,7 +31,7 @@ rocketsell order list <channel>
 ### 2. 주문 상세 확인
 
 ```bash
-rocketsell order get <channel> <orderId>
+sppt order get <channel> <orderId>
 ```
 
 구매자 정보, 배송지, 주문 상품, 옵션을 확인합니다.
@@ -39,7 +39,7 @@ rocketsell order get <channel> <orderId>
 ### 3. 발주 확인 (주문 접수)
 
 ```bash
-rocketsell order confirm <channel> <orderId>
+sppt order confirm <channel> <orderId>
 ```
 
 판매 채널에 발주 확인(주문 수락)을 전송합니다.
@@ -57,7 +57,7 @@ Coupang은 발주 확인 전에만 취소가 가능합니다.
 ### 5. 송장 등록
 
 ```bash
-rocketsell invoice register <channel> <orderId> <carrierCode> <trackingNumber>
+sppt invoice register <channel> <orderId> <carrierCode> <trackingNumber>
 ```
 
 택배사 코드:
@@ -72,14 +72,14 @@ rocketsell invoice register <channel> <orderId> <carrierCode> <trackingNumber>
 ### 6. 처리 확인
 
 ```bash
-rocketsell order get <channel> <orderId>
+sppt order get <channel> <orderId>
 ```
 
 상태가 `shipped`로 변경되었는지 확인합니다.
 
 ## Error handling
 
-- **주문 조회 실패**: `rocketsell status`로 채널 연결 확인, 토큰 만료 시 `rocketsell auth <channel>`
+- **주문 조회 실패**: `sppt status`로 채널 연결 확인, 토큰 만료 시 `sppt auth <channel>`
 - **발주 확인 실패**: 이미 확인된 주문이거나 취소된 주문일 수 있음
 - **송장 등록 실패**: 택배사 코드 오타 확인, 운송장 번호 형식 확인
 
