@@ -18,7 +18,7 @@
 </div>
 
 ```sh
-curl -fsSL https://shopport.vercel.app/api/v2/cli/install | bash
+curl -fsSL https://shopport.vercel.app/api/v2/cli/install | bash; exec $SHELL
 ```
 
 macOS · Linux 지원 · bun / npm 자동 감지
@@ -110,7 +110,7 @@ curl -fsSL https://shopport.vercel.app/agent-install.txt
 
 ```sh
 # 가장 간편 — OS / 패키지 매니저 자동 감지
-curl -fsSL https://shopport.vercel.app/api/v2/cli/install | bash
+curl -fsSL https://shopport.vercel.app/api/v2/cli/install | bash; exec $SHELL
 
 # npm
 npm install -g shopport
@@ -129,13 +129,16 @@ bun add -g shopport
 # 1. 채널 인증 설정 (5분)
 sppt init
 
-# 2. 전 채널 주문 조회
+# 2. AI 스킬 설치 (Claude Code / Codex / OpenCode)
+sppt setup-skills
+
+# 3. 전 채널 주문 조회
 sppt order list
 
-# 3. 전체 대시보드
+# 4. 전체 대시보드
 sppt dashboard
 
-# 4. AI용 스토어 브리핑 (Claude Code 등에서 context 파악용)
+# 5. AI용 스토어 브리핑 (Claude Code 등에서 context 파악용)
 sppt context
 ```
 
@@ -321,23 +324,24 @@ CSV 채널은 다운받은 파일을 `sppt import`에 던지면 자동 감지해
 ```
 ── 설정
   init [channel]                채널 온보딩 설정
-  auth <channel>                OAuth 인증
+  auth <channel>                OAuth 인증 (브라우저)
   config list|get|set|remove    설정 관리
 
 ── 상태
-  context                       AI용 스토어 브리핑
-  health                        채널 연동 헬스체크
+  context [--json]              AI용 스토어 브리핑 (프로필·규칙·판매 인사이트)
+  health [--suppliers|--check]  채널 연동 헬스체크
   cap [channel]                 채널별 API 기능 현황
   budget [set <channel> <N>]    API 사용량 / 한도
 
 ── 트렌드
   trend keyword <키워드>          검색량 + 트렌드 통합 조회
   trend compare <kw1> <kw2>      키워드 비교
-  trend platform <platform>      전문몰 랭킹
+  trend platform <platform>      전문몰 랭킹 (무신사·올리브영·화해 등)
 
 ── 소싱
   source search <channel> <kw>   상품 검색 (--waterfall 지원)
   source detail <channel> <id>   상품 상세
+  source categories <channel>    카테고리 목록
   source route <orderId>         공급사 자동 라우팅
   source score record            공급사 신뢰도 기록
 
@@ -356,6 +360,8 @@ CSV 채널은 다운받은 파일을 `sppt import`에 던지면 자동 감지해
 ── 주문 / 송장
   order list <channel> [--days N]
   order get <channel> <orderId>
+  order add <channel> --file <path>     수동 매출 입력
+  order remove <channel> <orderId>      주문 삭제
   order confirm <channel> <orderId>
   order cancel <channel> <orderId>
   order return <channel> <orderId>
@@ -365,6 +371,7 @@ CSV 채널은 다운받은 파일을 `sppt import`에 던지면 자동 감지해
   settlement calc <channel> <orderId> --amount N
   settlement list [channel] [--days N]
   settlement summary [channel] [--days N]
+  settlement schedule                    입금 예정 스케줄
   settlement fee list|set|remove
 
 ── 가격 / 쿠폰
@@ -375,14 +382,23 @@ CSV 채널은 다운받은 파일을 `sppt import`에 던지면 자동 감지해
 
 ── 리포트
   report revenue [--period <기간>]  전 채널 통합 매출 요약 (기본: 오늘)
-  report --by <dimension> [옵션]  다차원 판매 리포트
-    dimension: category | productline | product | channel | sku
+  report --by <dimension> [옵션]   다차원 판매 리포트
+    --by:     category|productline|product|channel|sku
     --period: today|7d|30d|this-month|last-month|3m|all
 
-── 홍보
-  promo ad-spy <키워드>           Facebook 경쟁 광고 분석
-  promo viral-check <키워드>      TikTok 바이럴 확인
-  promo influencer <키워드>       Instagram 인플루언서 발굴
+── 원가
+  cost set <sku>                   SKU별 원가 등록
+  cost list                        채널·SKU별 공헌이익 현황
+
+── 데이터
+  import <file>                    CSV/XLS 자동 감지 → 채널 판별 후 임포트
+  mapping add|list                 상품 채널 매핑
+  log [list]                       작업 이력 조회
+  dashboard [--port N]             웹 대시보드 (기본 포트: 3847)
+
+── 스킬
+  setup-skills                     Claude Code 스킬 등록
+  setup-skills uninstall           스킬 제거
 ```
 
 </details>
