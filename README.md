@@ -336,7 +336,7 @@ CSV 채널은 다운받은 파일을 `sppt import`에 던지면 자동 감지해
 ── 트렌드
   trend keyword <키워드>          검색량 + 트렌드 통합 조회
   trend compare <kw1> <kw2>      키워드 비교
-  trend platform <platform>      전문몰 랭킹 (무신사·올리브영·화해 등)
+  trend platform <platform>      전문몰 랭킹 (무신사·화해 등)
 
 ── 소싱
   source search <channel> <kw>   상품 검색 (--waterfall 지원)
