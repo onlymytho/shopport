@@ -1,3 +1,24 @@
+---
+name: sppt-promo-research
+version: 1.0.0
+description: |
+  경쟁 광고 분석 → 바이럴 강도 확인 → AI 광고 카피 생성 홍보 리서치 워크플로우.
+  Use when asked to "광고 분석", "카피 써줘", "홍보 전략", "인플루언서 찾아줘".
+triggers:
+  - 광고 분석
+  - 카피 생성
+  - 홍보 전략
+  - 인플루언서
+  - promo research
+allowed-tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+---
+
 # promo-research
 
 소싱 키워드 또는 등록 상품을 바탕으로 경쟁 광고 분석 → 바이럴 강도 확인 → AI 광고 카피 생성까지 자동으로 진행하는 홍보 리서치 워크플로우.
