@@ -1,0 +1,20 @@
+{
+	"name": "shopport-marketplace",
+	"owner": {
+		"name": "워킨온 (onlymytho)",
+		"email": "onlymytho@gmail.com"
+	},
+	"metadata": {
+		"description": "shopport — AI를 위한 이커머스 운영도구 플러그인"
+	},
+	"plugins": [
+		{
+			"name": "shopport",
+			"source": ".",
+			"description": "이커머스 운영 자동화 — 주문, 발주, 정산, 재고, 소싱, 트렌드 리서치",
+			"version": "0.1.12",
+			"category": "commerce-ops",
+			"tags": ["ecommerce", "coupang", "smartstore", "cafe24", "shopify"]
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"name": "shopport",
+	"description": "AI를 위한 이커머스 운영도구 — 쿠팡, 스마트스토어, 카페24, Shopify 통합 관리. 주문 수집, 발주, 정산, 재고 동기화, 소싱, 트렌드 리서치까지.",
+	"version": "0.1.12",
+	"author": {
+		"name": "워킨온 (onlymytho)",
+		"email": "onlymytho@gmail.com"
+	},
+	"homepage": "https://shopport.vercel.app",
+	"repository": "https://github.com/onlymytho/shopport",
+	"license": "MIT",
+	"keywords": [
+		"ecommerce",
+		"coupang",
+		"smartstore",
+		"cafe24",
+		"shopify",
+		"order-management",
+		"inventory",
+		"sourcing",
+		"commerce-ops"
+	]
+}
