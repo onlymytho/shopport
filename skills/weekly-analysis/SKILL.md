@@ -36,24 +36,16 @@ allowed-tools:
 
 ## Data Collection
 
-아래 커맨드로 이번 주 + 지난 주 데이터를 수집합니다.
+아래 커맨드로 현재 기간과 직전 기간의 비교 데이터를 한 번에 수집합니다.
 
 ```bash
-# 이번 주 채널별 요약
-sppt report --by channel --period 7d --json
-
-# 지난 주 채널별 요약
-sppt report --by channel --period 7d --offset 7d --json
-# TODO: --offset 플래그 구현 필요 (현재 미구현)
-# 임시 대안: --from YYYY-MM-DD --to YYYY-MM-DD 사용
+# 채널별 현재/직전 7일 비교 + 볼륨·단가 분해
+sppt report compare --by channel --period 7d --json
 ```
 
 ```bash
-# 이번 주 상품별 요약 (top 10)
-sppt report --by product --period 7d --top 10 --json
-
-# 지난 주 상품별 요약
-sppt report --by product --period 7d --offset 7d --top 10 --json
+# 상품별 현재/직전 7일 비교 (top 10)
+sppt report compare --by product --period 7d --top 10 --json
 ```
 
 ```bash
@@ -67,11 +59,31 @@ sppt settlement summary --days 7 --json
 sppt settlement summary --days 14 --json
 ```
 
-> **참고**: `--offset` 플래그가 없는 경우 날짜를 직접 지정:
-> ```bash
-> sppt report --by channel --from 2026-04-14 --to 2026-04-21 --json
-> sppt report --by channel --from 2026-04-21 --to 2026-04-28 --json
-> ```
+### compare 응답 구조
+
+```json
+{
+  "dimension": "channel",
+  "period": "7d",
+  "current":  { "from": "2026-04-20", "to": "2026-04-26", "totalRevenue": 3990000, "rows": [...] },
+  "previous": { "from": "2026-04-13", "to": "2026-04-19", "totalRevenue": 3620000, "rows": [...] },
+  "diff": [
+    {
+      "label": "coupang",
+      "revenueDiff": 34.4,
+      "volumeDiff": 30.0,
+      "priceDiff": 3.4,
+      "volumeEffect": 645000,
+      "priceEffect": 95000,
+      "revenueChange": 740000
+    }
+  ]
+}
+```
+
+- `volumeEffect` = (이번주_수량 - 지난주_수량) × 지난주_평균단가
+- `priceEffect` = (이번주_평균단가 - 지난주_평균단가) × 이번주_수량
+- `revenueDiff` / `volumeDiff` / `priceDiff` = % 변화 (null if prev=0)
 
 ## Analysis Steps
 
@@ -106,12 +118,12 @@ sppt settlement summary --days 14 --json
 
 ### Step 2: 채널별 매출 분포 변화 분해
 
-```
-채널 점유율 변화 = 이번주_채널매출/이번주_총매출 - 지난주_채널매출/지난주_총매출
+`sppt report compare --by channel` 의 diff 배열에서 직접 읽습니다:
 
-채널 매출 변화 = 볼륨 변화 + 단가 변화
-  볼륨 효과   = (이번주_수량 - 지난주_수량) × 지난주_평균단가
-  단가 효과   = (이번주_평균단가 - 지난주_평균단가) × 이번주_수량
+```
+volumeEffect = (이번주_수량 - 지난주_수량) × 지난주_평균단가   ← compare 응답에 포함
+priceEffect  = (이번주_평균단가 - 지난주_평균단가) × 이번주_수량 ← compare 응답에 포함
+채널 점유율 변화 = current.rows[i].revenue/current.totalRevenue - previous.rows[i].revenue/previous.totalRevenue
 ```
 
 출력 예시:
@@ -228,13 +240,12 @@ Claude에게 다음 구조로 전달합니다:
 - **채널 1개만 있음**: 채널 분포 분석 skip, 상품별 분석에 집중
 - **`--offset` 미구현**: `--from`/`--to` 날짜로 수동 지정 안내
 
-## CLI 인터페이스 TODO
+## CLI 인터페이스
 
-이 스킬이 의존하는 미구현 커맨드 (구현 우선순위):
+이 스킬이 의존하는 커맨드:
 
-| 커맨드 | 우선순위 | 설명 |
-|--------|---------|------|
-| `sppt report --offset <N>d` | HIGH | 기준 기간을 N일 전으로 이동 |
-| `sppt report --compare lastweek` | HIGH | 이번 주 vs 지난 주 자동 비교 |
-| `sppt report --decompose` | MEDIUM | 볼륨/단가 분해 출력 |
-| `sppt analysis weekly --json` | MEDIUM | 전체 주간 분석을 단일 커맨드로 |
+| 커맨드 | 상태 | 설명 |
+|--------|------|------|
+| `sppt report compare --by <dim> --period <Nd> --json` | ✅ 구현 완료 | 현재/직전 기간 분해 비교 (볼륨·단가 효과 포함) |
+| `sppt cost list --json` | ✅ 구현 완료 | SKU별 원가 목록 |
+| `sppt settlement summary --days N --json` | ✅ 구현 완료 | 채널별 수수료 실효율 |
