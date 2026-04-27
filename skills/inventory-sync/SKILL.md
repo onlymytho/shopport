@@ -3,12 +3,6 @@ name: sppt-inventory-sync
 description: |
   공급사 재고 기준 멀티채널 재고 분배 + 동기화 워크플로우.
   Use when asked to "재고 동기화", "채널별 재고 맞춰줘", "재고 분배".
-allowed-tools:
-  - Bash
-  - Read
-  - Edit
-  - Glob
-  - Grep
 ---
 
 # inventory-sync

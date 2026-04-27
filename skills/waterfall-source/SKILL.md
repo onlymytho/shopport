@@ -3,11 +3,6 @@ name: sppt-waterfall-source
 description: |
   3개 소싱 채널(도매매→specialoffer→cjdropshipping) 워터폴 가격 비교.
   Use when asked to "가장 싼 공급사 찾아줘", "소싱 비교", "최적 소싱처".
-allowed-tools:
-  - Bash
-  - Read
-  - Glob
-  - Grep
 ---
 
 # waterfall-source

@@ -3,11 +3,6 @@ name: sppt-status-check
 description: |
   전채널 연결 상태 + API 건강 체크 + 스토어 브리핑.
   Use when asked to "상태 확인", "채널 연결 돼있어?", "헬스체크", "지금 상황 알려줘".
-allowed-tools:
-  - Bash
-  - Read
-  - Glob
-  - Grep
 ---
 
 # status-check

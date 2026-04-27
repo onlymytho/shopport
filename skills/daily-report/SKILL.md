@@ -3,9 +3,6 @@ name: sppt-daily-report
 description: |
   매일 아침 매출/주문 현황 브리핑 워크플로우.
   Use when asked to "데일리 리포트", "오늘 브리핑", "매출 요약해줘", "아침 리포트".
-allowed-tools:
-  - Bash
-  - Read
 ---
 
 # daily-report
