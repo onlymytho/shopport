@@ -4,22 +4,13 @@ description: |
   전주 대비 매출 변화 원인 분석 + 채널 수수료 최적화 컨설팅 워크플로우.
   Use when asked to "주간 분석", "왜 매출이 줄었어", "채널별 원인 분석", "지난 주 비교",
   "매출이익률 분석", "수수료율 변화", "원인 분석해줘".
-allowed-tools:
-  - Bash
-  - Read
 ---
 
 # weekly-analysis
 
 ## 채널 분류 컨텍스트
 
-분석 시작 전 채널 메타정보를 조회해 특성을 파악한다:
-
-```bash
-sppt channel meta --json
-```
-
-각 채널에는 `type`(own-mall/open-market/vertical-specialist), `entryRequirement`(open/contract), `hasChannelBrandValue`가 정의되어 있다.
+`channelMeta` 응답의 각 채널에는 `type`(own-mall/open-market/vertical-specialist), `entryRequirement`(open/contract), `hasChannelBrandValue`가 정의되어 있다.
 
 **수수료 최적화 시 주의:**
 - `entryRequirement: "contract"` 채널은 계약 관계이므로 단순 수수료 비교로 비중 축소를 권고하면 안 된다.
@@ -28,16 +19,24 @@ sppt channel meta --json
 
 ## Data Collection
 
+커맨드 **1회**로 모든 데이터를 가져옵니다:
+
 ```bash
-sppt channel meta --json               # 채널 특성 (type/entryRequirement/hasChannelBrandValue)
-sppt channel fees --json               # 채널별 수수료 전체 (유입경로별 포함)
-# sppt channel fees --compare <rate>  # 특정 수수료율 이하·근방 경로 비교 (필요시)
-sppt report compare --by channel --period 7d --json
-sppt report compare --by product --period 7d --top 10 --json
-sppt settlement summary --json        # 기본값 30일
-sppt settlement fee list smartstore   # 유입경로별 수수료 규칙 확인
-sppt cost list --json                  # 없으면 Step 4 skip
+sppt report weekly --json
 ```
+
+옵션:
+- `--period 7d` (기본값) — 채널/상품 비교 기간
+- `--top 10` (기본값) — 채널/상품 표시 개수
+- `--settlement-days 30` (기본값) — 정산 집계 기간
+
+응답 구조:
+- `channelMeta` — 채널 특성 (type/entryRequirement/hasChannelBrandValue)
+- `channelFees` — 채널별 수수료 전체 (유입경로별 포함)
+- `reportByChannel` — 채널별 현재/전주 비교 + diff
+- `reportByProduct` — 상품별 현재/전주 비교 + diff (top 10)
+- `settlement` — 채널별 정산 요약 (매출/수수료/순수익/실효수수료율)
+- `costs` — SKU별 원가 목록 (미등록 시 null)
 
 ## Analysis Steps
 
@@ -52,14 +51,14 @@ sppt cost list --json                  # 없으면 Step 4 skip
 
 ### Step 2: 채널별 매출 변화 분해
 
-`report compare --by channel` diff 배열에서 직접 읽는다.
+`reportByChannel.diff` 배열에서 직접 읽는다.
 
 - 채널별 매출 증감, volumeEffect / priceEffect 요약
 - 채널 점유율 변화 (이전주 비중 → 이번주 비중)
 
 ### Step 3: Top Mover 상품 귀속
 
-`report compare --by product` diff 배열 상위 항목을 채널 변화에 귀속시킨다.
+`reportByProduct.diff` 배열 상위 항목을 채널 변화에 귀속시킨다.
 
 - 매출 변화 상위 5개 상품: revenueChange, volumeDiff%, priceDiff%
 - 특이값 (신규 등장 또는 완전 소멸 상품) 별도 언급
@@ -81,5 +80,5 @@ sppt cost list --json                  # 없으면 Step 4 skip
 - **이번주 매출이 이전주 대비 -80% 이상**: 데이터 수집 공백 가능성 → `sppt order pull` 재실행 안내 후 분석
 - **원가 미등록**: Step 4 skip
 - **채널 1개만**: 수수료 비교 skip, 단가/볼륨 분석 집중
-- **settlement 표본 부족** (채널별 < 5건): 수수료율 신뢰도 낮음 표기, `--days 90` 권장
+- **settlement 표본 부족** (채널별 < 5건): 수수료율 신뢰도 낮음 표기, `--settlement-days 90` 권장
 - **smartstore fee rule 미등록**: 실효율 신뢰도 낮음 표기. `sppt settlement hints smartstore`로 annualRevenue 설정 권장.
