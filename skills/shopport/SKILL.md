@@ -31,6 +31,7 @@ sppt --help
 | `/sppt-price-monitor` | 소싱가 변동 감지 → 마진 체크 → 판매가 조정 |
 | `/sppt-weekly-analysis` | 전주 대비 매출 변화 원인 분석 + 채널 수수료 최적화 |
 | `/sppt-settlement-report` | 정산 현황 조회 + 수익 요약 |
+| `/sppt-policy-ask` | PG사·판매채널 수수료·정산 정책 Q&A |
 | `/sppt-cost-calc` | 원가/마진/수수료 계산 |
 | `/sppt-trend-research` | 트렌드 키워드 리서치 |
 | `/sppt-dashboard` | 운영 대시보드 띄우기 |
