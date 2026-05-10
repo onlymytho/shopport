@@ -99,6 +99,7 @@ sppt product mapping --edit 2 --skus "CKRS-WASH:3:component,CKRS-LOTN:3:componen
 
 설정 후 `sppt product mapping --json`으로 결과 검증 → 사용자 승인 → `sppt product mapping --confirm all`.
 `--confirm` 시 경고가 출력되면 즉시 중단하고 사용자에게 보고.
+확정 완료 후 `sppt product mapping --confirmed`로 전체 확정 매핑 + 구성품 조회 가능.
 
 #### 타입 선택 기준
 

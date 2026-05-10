@@ -52,6 +52,9 @@ sppt context         # AI용 스토어 브리핑
 
 ### 주문/송장
 - `sppt order list|get|confirm|cancel|return <channel>` — 주문 관리
+- `sppt order exclude <channelOrderId> [--reason "사유"]` — 매출 집계에서 제외
+- `sppt order include <channelOrderId>` — 제외 해제
+- `sppt order excluded` — 제외된 주문 목록
 - `sppt invoice register <channel> <orderId> <carrier> <tracking>` — 송장
 
 ### 소싱
@@ -68,6 +71,9 @@ sppt context         # AI용 스토어 브리핑
 ### 분석
 - `sppt trend keyword|compare|platform` — 트렌드
 - `sppt report revenue|--by <dimension>` — 매출 리포트
+  - `--explain` — SKU별 수량 기여 분해 (직접주문 vs 세트전개)
+  - `--include-excluded` — 제외된 주문도 포함하여 집계
+- `sppt product mapping --confirmed` — 확정된 SKU 매핑 + 구성품 조회
 - `sppt dashboard` — 웹 대시보드
 
 ### 데이터

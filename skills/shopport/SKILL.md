@@ -44,6 +44,10 @@ sppt init              # 채널 온보딩
 sppt status            # 연결 상태 확인
 sppt context           # AI용 스토어 브리핑
 sppt order list cafe24 # 주문 조회
+sppt order exclude <id> --reason "테스트"  # 매출 집계에서 제외
+sppt order excluded    # 제외된 주문 목록
+sppt report --by category --explain  # 수량 기여 분해
+sppt product mapping --confirmed     # 확정 SKU 매핑 조회
 ```
 
 판매 채널: cafe24, coupang, smartstore, shopify
