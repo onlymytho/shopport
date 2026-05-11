@@ -63,6 +63,8 @@ sppt context         # AI용 스토어 브리핑
 ### 정산
 - `sppt settlement calc|list|summary` — 정산 조회
 - `sppt settlement fee list|set|remove` — 수수료 규칙
+- `sppt settlement deposit <file>` — 은행 입금 내역 CSV 임포트 (KB·신한·우리·하나)
+- `sppt settlement deposit delete --date <날짜> --provider <입금처>` — 입금 내역 삭제
 
 ### 가격/쿠폰
 - `sppt price set|variant` — 가격 변경

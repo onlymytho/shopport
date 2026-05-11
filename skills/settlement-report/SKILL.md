@@ -92,6 +92,23 @@ smartstore   620,000   34,100    585,900   94.5%
 합계       3,620,000  294,350  3,325,650   91.9%
 ```
 
+### 6. 은행 입금 내역 임포트 (카페24 대사용)
+
+카페24 정산 대사를 위해 실제 통장 입금 내역을 DB에 올립니다:
+
+```bash
+# KB·신한·우리·하나 CSV 자동 감지
+sppt settlement deposit <file.csv>
+
+# 날짜 범위 필터 + 미리보기
+sppt settlement deposit <file.csv> --from 2026-04-01 --to 2026-05-01 --dry-run
+
+# 잘못 올린 항목 삭제
+sppt settlement deposit delete --date 2026-04-06 --provider 카페24페이먼
+```
+
+임포트 후 대시보드 정산 페이지 → 카페24 → '정산 대사' 패널에서 확인합니다.
+
 ## Error handling
 
 - **수수료 규칙 미설정**: 채널 기본 수수료율로 안내 후 설정 유도

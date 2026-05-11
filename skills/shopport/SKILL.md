@@ -48,6 +48,8 @@ sppt order exclude <id> --reason "테스트"  # 매출 집계에서 제외
 sppt order excluded    # 제외된 주문 목록
 sppt report --by category --explain  # 수량 기여 분해
 sppt product mapping --confirmed     # 확정 SKU 매핑 조회
+sppt settlement deposit <file.csv>   # 은행 입금 내역 CSV 임포트 (KB·신한·우리·하나)
+sppt settlement deposit delete --date YYYY-MM-DD --provider <입금처>  # 입금 내역 삭제
 ```
 
 판매 채널: cafe24, coupang, smartstore, shopify
