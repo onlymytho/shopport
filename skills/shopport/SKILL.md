@@ -52,5 +52,6 @@ sppt settlement deposit <file.csv>   # 은행 입금 내역 CSV 임포트 (KB·�
 sppt settlement deposit delete --date YYYY-MM-DD --provider <입금처>  # 입금 내역 삭제
 ```
 
-판매 채널: cafe24, coupang, smartstore, shopify
-소싱 채널: domemae, domeggook, specialoffer, cjdropshipping
+판매 채널: cafe24, coupang, smartstore, shopify, toss-shopping, 29cm, musinsa
+소싱 채널: domemae, domeggook, specialoffer, cjdropshipping, 1688
+물류 채널: dada-erp, ezadmin, onewms, sabangnet, boxhero, ecount-erp, douzone-wehago, playauto, argo, poomgo
