@@ -37,6 +37,7 @@ sppt context         # AI용 스토어 브리핑
 | `/sppt-trend-research` | 트렌드 키워드 리서치 |
 | `/sppt-dashboard` | 운영 대시보드 띄우기 |
 | `/sppt-status-check` | 전채널 연결 + 건강 체크 |
+| `/sppt-update` | CLI 버전 업데이트 + 릴리즈 노트 확인 |
 
 ## CLI 커맨드 요약
 
