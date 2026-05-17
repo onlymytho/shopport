@@ -44,6 +44,13 @@ sppt context         # AI용 스토어 브리핑
 
 ### 설정
 - `sppt init [channel]` — 채널 온보딩 (`--json`, `--local`, `--terminal`)
+  - 비대화형 채널 연결 (AI 에이전트용 — 플래그로 크리덴셜 전달 시 프롬프트 없이 바로 저장+테스트):
+    - `sppt init smartstore --client-id <id> --client-secret <secret>`
+    - `sppt init coupang --vendor-id <id> --access-key <key> --secret-key <secret> [--vendor-user-id <id>]`
+    - `sppt init shopify --store-domain <domain> --access-token <token> [--api-version <ver>]`
+    - `sppt init toss-shopping --client-id <id> --client-secret <secret>`
+    - `sppt init 29cm --client-id <id> --client-secret <secret> --partner-key <key>`
+    - `sppt init musinsa --api-key <key> --api-secret <secret>`
 - `sppt auth login` — 브라우저 OAuth 로그인
 - `sppt auth logout` — 세션 초기화
 - `sppt auth whoami` — 현재 로그인 계정 확인
