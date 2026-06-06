@@ -40,7 +40,6 @@ sppt context         # AI용 스토어 브리핑
 | `/sppt-dashboard` | 운영 대시보드 띄우기 |
 | `/sppt-status-check` | 전채널 연결 + 건강 체크 |
 | `/sppt-update` | CLI 버전 업데이트 + 릴리즈 노트 확인 |
-| `/blog-write` | 큐레이션 글 작성 풀 라우틴 (픽 → 본문 → hero·도식 → 사이드카 → 메일리 발행 인계) |
 
 ## CLI 커맨드 요약
 
