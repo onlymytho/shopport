@@ -157,6 +157,7 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt crm cafe24 groups [--group-no <no>] [--group-name <name>] [--json]` — cafe24 회원등급 조회
 - `sppt crm cafe24 customers [--limit N] [--offset N] [--group-no <no>] [--created-start-date YYYY-MM-DD] [--json]` — cafe24 회원목록 조회
 - `sppt crm cafe24 customer <member_id> [--json]` — cafe24 단일 회원 상세 조회
+- `sppt crm cafe24 group assign <member_id> --group-no <no> [--fixed] [--dry-run]` — cafe24 회원등급 지정
 - `sppt crm balance` — cafe24 SMS 잔액·발신번호 상태
 - `sppt crm sms send --content "본문" [--to <phone> | --member <id> | --group <no>]` — cafe24 SMS 발송
 

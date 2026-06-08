@@ -80,6 +80,7 @@ sppt coupon support
 sppt crm cafe24 groups [--json]
 sppt crm cafe24 customers [--limit N] [--group-no <no>] [--json]
 sppt crm cafe24 customer <member_id> [--json]
+sppt crm cafe24 group assign <member_id> --group-no <no> [--fixed] [--dry-run]
 sppt crm balance
 sppt crm sms send --content "본문" --to <phone>
 ```
