@@ -15,6 +15,8 @@ description: |
 sppt --help          # CLI 전체 도움말
 sppt status          # 채널 연결 상태 확인
 sppt context         # AI용 스토어 브리핑
+sppt crm cafe24 groups     # cafe24 회원등급 조회
+sppt crm cafe24 customers  # cafe24 회원목록 조회
 ```
 
 ## 사용 가능한 스킬
@@ -145,6 +147,13 @@ sppt context         # AI용 스토어 브리핑
 - `sppt coupon create <channel> --name <name> --type <type> --value <N>` — 쿠폰 생성
 - `sppt coupon issue <channel> <couponId> --members <id1,id2,...>` — 쿠폰 발급
 - `sppt coupon support` — 채널별 쿠폰 기능 지원 현황
+
+### CRM
+- `sppt crm cafe24 groups [--group-no <no>] [--group-name <name>] [--json]` — cafe24 회원등급 조회
+- `sppt crm cafe24 customers [--limit N] [--offset N] [--group-no <no>] [--created-start-date YYYY-MM-DD] [--json]` — cafe24 회원목록 조회
+- `sppt crm cafe24 customer <member_id> [--json]` — cafe24 단일 회원 상세 조회
+- `sppt crm balance` — cafe24 SMS 잔액·발신번호 상태
+- `sppt crm sms send --content "본문" [--to <phone> | --member <id> | --group <no>]` — cafe24 SMS 발송
 
 ### 분석/리포트
 - `sppt trend keyword <keyword> [--volume] [--trend] [--months N]` — 검색량 + 트렌드

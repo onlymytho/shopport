@@ -51,8 +51,20 @@ sppt order exclude <id> --reason "테스트"  # 매출 집계에서 제외
 sppt order excluded    # 제외된 주문 목록
 sppt report --by category --explain  # 수량 기여 분해
 sppt product mapping --confirmed     # 확정 SKU 매핑 조회
+sppt crm cafe24 groups                # cafe24 회원등급 조회
+sppt crm cafe24 customers --limit 30  # cafe24 회원목록 조회
 sppt settlement deposit <file.csv>   # 은행 입금 내역 CSV 임포트 (KB·신한·우리·하나)
 sppt settlement deposit delete --date YYYY-MM-DD --provider <입금처>  # 입금 내역 삭제
+```
+
+## CRM
+
+```bash
+sppt crm cafe24 groups [--json]
+sppt crm cafe24 customers [--limit N] [--group-no <no>] [--json]
+sppt crm cafe24 customer <member_id> [--json]
+sppt crm balance
+sppt crm sms send --content "본문" --to <phone>
 ```
 
 판매 채널: cafe24, coupang, smartstore, shopify, toss-shopping, 29cm, musinsa
