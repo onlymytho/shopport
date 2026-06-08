@@ -53,8 +53,25 @@ sppt report --by category --explain  # 수량 기여 분해
 sppt product mapping --confirmed     # 확정 SKU 매핑 조회
 sppt crm cafe24 groups                # cafe24 회원등급 조회
 sppt crm cafe24 customers --limit 30  # cafe24 회원목록 조회
+sppt coupon list cafe24 --name "재구매" # 카페24 쿠폰 목록 + 다운로드 URL
+sppt coupon issues cafe24 <coupon_no> # 쿠폰 발급내역 조회
+sppt coupon revoke cafe24 <member_id> <coupon_no> --confirm # 회원 쿠폰 회수
+sppt coupon link cafe24 <coupon_no> --domain birthtii.com # 쿠폰 다운로드 URL 조립
 sppt settlement deposit <file.csv>   # 은행 입금 내역 CSV 임포트 (KB·신한·우리·하나)
 sppt settlement deposit delete --date YYYY-MM-DD --provider <입금처>  # 입금 내역 삭제
+```
+
+## 쿠폰
+
+```bash
+sppt coupon list cafe24 [--name <검색어>] [--json]
+sppt coupon get cafe24 <coupon_no> [--json]
+sppt coupon issues cafe24 <coupon_no> [--member <member_id>] [--order-status <status>] [--json]
+sppt coupon revoke cafe24 <member_id> <coupon_no> [--confirm]
+sppt coupon link cafe24 <coupon_no[,coupon_no...]> [--domain <domain>] [--copy]
+sppt coupon create <channel> --name <name> --type <type> --value <N>
+sppt coupon issue <channel> <couponId> --members <id1,id2,...>
+sppt coupon support
 ```
 
 ## CRM

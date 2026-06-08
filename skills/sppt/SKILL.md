@@ -144,6 +144,11 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt price set <channel> <productId> <price> [--sale-price N]` — 가격 변경
 - `sppt price variant shopify <variantId> <price> [--compare-at N]` — Shopify 옵션가 변경
 - `sppt price support` — 채널별 가격 기능 지원 현황
+- `sppt coupon list cafe24 [--name <검색어>] [--json]` — 카페24 쿠폰 목록 + 다운로드 URL
+- `sppt coupon get cafe24 <coupon_no> [--json]` — 카페24 쿠폰 상세
+- `sppt coupon issues cafe24 <coupon_no> [--member <member_id>] [--order-status <status>] [--json]` — 쿠폰 발급내역 조회
+- `sppt coupon revoke cafe24 <member_id> <coupon_no> [--confirm]` — 회원 쿠폰 회수 (`--confirm` 없으면 dry-run)
+- `sppt coupon link cafe24 <coupon_no[,coupon_no...]> [--domain <domain>] [--copy]` — 쿠폰 다운로드 URL 조립
 - `sppt coupon create <channel> --name <name> --type <type> --value <N>` — 쿠폰 생성
 - `sppt coupon issue <channel> <couponId> --members <id1,id2,...>` — 쿠폰 발급
 - `sppt coupon support` — 채널별 쿠폰 기능 지원 현황
