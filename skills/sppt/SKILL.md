@@ -81,6 +81,7 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt product sync-batch <from> <to> [--ids ...] [--all] [--markup N]` — 배치 복사
 - `sppt product keyword get|set|support` — 검색 키워드/태그 관리
 - `sppt product seo get|set|support` — SEO 메타데이터 관리
+- `sppt product fields get|set|apply cafe24` — Cafe24 SEO/discovery 필드 안전 조회·수정
 - `sppt product image get|set|add|delete|support` — 이미지 관리
 - `sppt product catalog [--local]` — 상품 카탈로그 브라우징
 - `sppt product unmapped [--local]` — 미매핑 상품 목록
