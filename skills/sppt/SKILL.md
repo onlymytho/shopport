@@ -174,6 +174,8 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt report compare --by <dim> --period <period>` — 기간 대비 비교 분석
 - `sppt report daily [--period N] [--top N]` — 일간 리포트
 - `sppt report weekly [--period N] [--top N]` — 주간 리포트
+- `sppt analytics cafe24 visitors [--period 7d] [--device total] [--format day] [--json]` — cafe24 방문자수 조회
+- `sppt analytics cafe24 visitpaths [--type domains|ads|keywords] [--period 7d] [--json]` — cafe24 유입경로 조회
 
 ### 물류
 - `sppt logistics status` — 물류 채널 연결 상태
