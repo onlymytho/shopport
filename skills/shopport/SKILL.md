@@ -63,6 +63,15 @@ sppt settlement deposit <file.csv>   # 은행 입금 내역 CSV 임포트 (KB·�
 sppt settlement deposit delete --date YYYY-MM-DD --provider <입금처>  # 입금 내역 삭제
 ```
 
+## 인증
+
+```bash
+sppt auth login --no-browser
+sppt auth token create --name <name> [--ttl-days 30]
+sppt auth token list
+sppt auth token revoke <id>
+```
+
 ## 쿠폰
 
 ```bash
