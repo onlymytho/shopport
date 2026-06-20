@@ -177,6 +177,13 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt analytics cafe24 visitors [--period 7d] [--device total] [--format day] [--json]` — cafe24 방문자수 조회
 - `sppt analytics cafe24 visitpaths [--type domains|ads|keywords] [--period 7d] [--json]` — cafe24 유입경로 조회
 
+### 광고
+- `sppt ads naver-sa campaigns [--json]` — 네이버 검색광고 캠페인 목록
+- `sppt ads naver-sa ads --adgroup <adgroupId> [--json]` — 소재 목록 + 연결 URL 조회
+- `sppt ads naver-sa ad --id <adId> [--json]` — 소재 단건 조회
+- `sppt ads naver-sa ad lock --id <adId> --lock true|false [--dry-run]` — 소재 ON/OFF
+- `sppt ads naver-sa ad update --id <adId> --fields <fields> --file <json> [--dry-run]` — 소재 필드 수정
+
 ### 물류
 - `sppt logistics status` — 물류 채널 연결 상태
 - `sppt logistics orders <channel> [--since DATE] [--status STATUS]` — 물류 주문 조회

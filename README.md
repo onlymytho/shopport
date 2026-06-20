@@ -338,6 +338,13 @@ CSV 채널은 다운받은 파일을 `sppt import`에 던지면 자동 감지해
   trend compare <kw1> <kw2>      키워드 비교
   trend platform <platform>      전문몰 랭킹 (무신사·화해 등)
 
+── 광고
+  ads naver-sa campaigns         네이버 검색광고 캠페인 목록
+  ads naver-sa ads --adgroup <id> 소재 목록 조회
+  ads naver-sa ad --id <adId>    소재 단건 조회
+  ads naver-sa ad lock --id <adId> --lock true|false  소재 ON/OFF
+  ads naver-sa ad update --id <adId> --fields <fields> --file <json>  소재 필드 수정
+
 ── 소싱
   source search <channel> <kw>   상품 검색 (--waterfall 지원)
   source detail <channel> <id>   상품 상세
