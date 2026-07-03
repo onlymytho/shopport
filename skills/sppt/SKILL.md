@@ -153,7 +153,7 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt coupon issues cafe24 <coupon_no> [--member <member_id>] [--order-status <status>] [--json]` — 쿠폰 발급내역 조회
 - `sppt coupon revoke cafe24 <member_id> <coupon_no> [--confirm]` — 회원 쿠폰 회수 (`--confirm` 없으면 dry-run)
 - `sppt coupon link cafe24 <coupon_no[,coupon_no...]> [--domain <domain>] [--copy]` — 쿠폰 다운로드 URL 조립
-- `sppt coupon create <channel> --name <name> --type <type> --value <N>` — 쿠폰 생성
+- `sppt coupon create <channel> --name <name> --benefit <amount|rate> --value <N>` — 쿠폰 생성 (cafe24는 지정 회원 발급용만)
 - `sppt coupon issue <channel> <couponId> --members <id1,id2,...>` — 쿠폰 발급
 - `sppt coupon support` — 채널별 쿠폰 기능 지원 현황
 

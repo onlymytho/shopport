@@ -80,7 +80,7 @@ sppt coupon get cafe24 <coupon_no> [--json]
 sppt coupon issues cafe24 <coupon_no> [--member <member_id>] [--order-status <status>] [--json]
 sppt coupon revoke cafe24 <member_id> <coupon_no> [--confirm]
 sppt coupon link cafe24 <coupon_no[,coupon_no...]> [--domain <domain>] [--copy]
-sppt coupon create <channel> --name <name> --type <type> --value <N>
+sppt coupon create <channel> --name <name> --benefit <amount|rate> --value <N>  # cafe24는 지정 회원 발급용만
 sppt coupon issue <channel> <couponId> --members <id1,id2,...>
 sppt coupon support
 ```
