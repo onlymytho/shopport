@@ -15,6 +15,17 @@ description: |
 sppt --help
 ```
 
+## 에이전트 인증
+
+브라우저를 열 수 없는 에이전트는 발급받은 원문 토큰을 표준 입력으로 등록한다.
+
+```bash
+printf %s "$SHOPPORT_AGENT_TOKEN" | sppt auth token set --stdin
+sppt auth whoami
+```
+
+`sppt auth token remove`는 이 기기의 등록값만 지우며 서버 토큰을 폐기하지 않는다.
+
 ## 사용 가능한 스킬
 
 | 스킬 | 설명 |
@@ -63,15 +74,6 @@ sppt settlement deposit <file.csv>   # 은행 입금 내역 CSV 임포트 (KB·�
 sppt settlement deposit delete --date YYYY-MM-DD --provider <입금처>  # 입금 내역 삭제
 ```
 
-## 인증
-
-```bash
-sppt auth login --no-browser
-sppt auth token create --name <name> [--ttl-days 30]
-sppt auth token list
-sppt auth token revoke <id>
-```
-
 ## 쿠폰
 
 ```bash
@@ -80,7 +82,7 @@ sppt coupon get cafe24 <coupon_no> [--json]
 sppt coupon issues cafe24 <coupon_no> [--member <member_id>] [--order-status <status>] [--json]
 sppt coupon revoke cafe24 <member_id> <coupon_no> [--confirm]
 sppt coupon link cafe24 <coupon_no[,coupon_no...]> [--domain <domain>] [--copy]
-sppt coupon create <channel> --name <name> --benefit <amount|rate> --value <N>  # cafe24는 지정 회원 발급용만
+sppt coupon create <channel> --name <name> --type <type> --value <N>
 sppt coupon issue <channel> <couponId> --members <id1,id2,...>
 sppt coupon support
 ```

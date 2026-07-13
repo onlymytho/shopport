@@ -55,8 +55,10 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
     - `sppt init 29cm --client-id <id> --client-secret <secret> --partner-key <key>`
     - `sppt init musinsa --api-key <key> --api-secret <secret>`
 - `sppt auth login` — 브라우저 OAuth 로그인
-- `sppt auth login --no-browser` — 원격/헤드리스 에이전트용 device code 로그인
-- `sppt auth token create --name <name> [--ttl-days 30]` — 에이전트용 `SHOPPORT_CLOUD_TOKEN` 발급
+- `sppt auth login --no-browser` — 원격/헤드리스 환경의 device code 로그인
+- `sppt auth token create --name <name> [--ttl-days 30]` — 에이전트용 토큰 발급
+- `printf %s "$SHOPPORT_AGENT_TOKEN" | sppt auth token set --stdin` — 브라우저 없이 agent token 등록·서버 검증
+- `sppt auth token remove` — 이 기기에 등록한 agent token만 제거 (서버 폐기 아님)
 - `sppt auth token list|revoke <id>` — 에이전트 토큰 목록/폐기
 - `sppt auth logout` — 세션 초기화
 - `sppt auth whoami` — 현재 로그인 계정 확인
@@ -153,7 +155,7 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt coupon issues cafe24 <coupon_no> [--member <member_id>] [--order-status <status>] [--json]` — 쿠폰 발급내역 조회
 - `sppt coupon revoke cafe24 <member_id> <coupon_no> [--confirm]` — 회원 쿠폰 회수 (`--confirm` 없으면 dry-run)
 - `sppt coupon link cafe24 <coupon_no[,coupon_no...]> [--domain <domain>] [--copy]` — 쿠폰 다운로드 URL 조립
-- `sppt coupon create <channel> --name <name> --benefit <amount|rate> --value <N>` — 쿠폰 생성 (cafe24는 지정 회원 발급용만)
+- `sppt coupon create <channel> --name <name> --type <type> --value <N>` — 쿠폰 생성
 - `sppt coupon issue <channel> <couponId> --members <id1,id2,...>` — 쿠폰 발급
 - `sppt coupon support` — 채널별 쿠폰 기능 지원 현황
 
