@@ -15,6 +15,17 @@ description: |
 sppt --help
 ```
 
+## 에이전트 인증
+
+브라우저를 열 수 없는 에이전트는 발급받은 원문 토큰을 표준 입력으로 등록한다.
+
+```bash
+printf %s "$SHOPPORT_AGENT_TOKEN" | sppt auth token set --stdin
+sppt auth whoami
+```
+
+`sppt auth token remove`는 이 기기의 등록값만 지우며 서버 토큰을 폐기하지 않는다.
+
 ## 사용 가능한 스킬
 
 | 스킬 | 설명 |
