@@ -174,8 +174,10 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt trend coverage [--min-volume N]` — 카탈로그 키워드 커버리지 분석
 - `sppt report revenue [--period <period>]` — 크로스채널 매출 요약
 - `sppt report --by <category|productline|product|channel|sku>` — 다차원 매출 리포트
+  - 기본 매출 기준은 Overview와 동일: 주문 최종 결제금액, 취소·반품·미결제·수동 제외 주문 제외
+  - 주문 수는 `(채널, 주문번호)` 기준 고유 주문 수이며, `--json`의 `metricBasis`에서 집계 기준 확인 가능
   - `--explain` — SKU별 수량 기여 분해 (직접주문 vs 세트전개)
-  - `--include-excluded` — 제외된 주문도 포함하여 집계
+  - `--include-excluded` — 수동 제외 주문만 다시 포함 (취소·반품·미결제는 계속 제외)
 - `sppt report compare --by <dim> --period <period>` — 기간 대비 비교 분석
 - `sppt report daily [--period N] [--top N]` — 일간 리포트
 - `sppt report weekly [--period N] [--top N]` — 주간 리포트
