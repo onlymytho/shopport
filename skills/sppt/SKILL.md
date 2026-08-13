@@ -100,8 +100,8 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt order add <channel> --product "name" --price N [--qty N] [--date DATE]` — 수동 주문 추가
 - `sppt order remove <orderId>` — 수동 주문 삭제
 - `sppt order delete [--ids ...] [--channel <ch>] [--from DATE] [--to DATE]` — 벌크 삭제
-- `sppt order exclude <channelOrderId> [--reason "사유"]` — 매출 집계에서 제외
-- `sppt order include <channelOrderId>` — 제외 해제
+- `sppt order exclude <id> [id...] [--ids id1,id2] [--reason "사유"] [--inventory-deduction]` — 최대 100건을 매출 집계에서 제외 (`--inventory-deduction` 지정 시 재고 차감 유지)
+- `sppt order include <id> [id...] [--ids id1,id2]` — 최대 100건 제외 해제
 - `sppt order excluded` — 제외된 주문 목록
 - `sppt invoice register <channel> <orderId> <carrier> <tracking>` — 송장 등록
 

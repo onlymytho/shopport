@@ -59,6 +59,7 @@ sppt status            # 연결 상태 확인
 sppt context           # AI용 스토어 브리핑
 sppt order list cafe24 # 주문 조회
 sppt order exclude <id> --reason "테스트"  # 매출 집계에서 제외
+sppt order exclude --ids id1,id2 --inventory-deduction  # 집계 제외 + 재고 차감 유지
 sppt order excluded    # 제외된 주문 목록
 sppt report --by category --explain  # 수량 기여 분해
 sppt analytics cafe24 visitors --period 7d # 카페24 방문자수 조회
