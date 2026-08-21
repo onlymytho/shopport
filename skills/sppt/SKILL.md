@@ -91,7 +91,8 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt product catalog [--local]` — 상품 카탈로그 브라우징
 - `sppt product unmapped [--local]` — 미매핑 상품 목록
 - `sppt product rules [set <file>] [--local]` — 분류 규칙 조회/설정
-- `sppt product parse [--file <mapping.csv>]` — 매핑 파일에서 카탈로그 파싱
+- `sppt product parse` — CatalogProduct 분류 미리보기·후보 검토·적용
+- `sppt product parse --local --file <mapping.csv>` — 로컬 호환 카탈로그 임포트
 - `sppt product mapping [--edit N] [--confirm N|all] [--confirmed] [--json]` — SKU 매핑 관리
 - `sppt product candidates` — 매핑 후보 조회
 
