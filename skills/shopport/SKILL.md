@@ -64,7 +64,7 @@ sppt order excluded    # 제외된 주문 목록
 sppt report --by category --explain  # 수량 기여 분해
 sppt analytics cafe24 visitors --period 7d # 카페24 방문자수 조회
 sppt analytics cafe24 visitpaths --type domains --period 7d # 카페24 유입경로 조회
-sppt product mapping --confirmed     # 확정 SKU 매핑 조회
+sppt product mapping unmapped        # durable 미매핑 검토 큐 조회
 sppt crm cafe24 groups                # cafe24 회원등급 조회
 sppt crm cafe24 customers --limit 30  # cafe24 회원목록 조회
 sppt coupon list cafe24 --name "재구매" # 카페24 쿠폰 목록 + 다운로드 URL

@@ -88,13 +88,18 @@ sppt crm cafe24 customers  # cafe24 회원목록 조회
 - `sppt product seo get|set|support` — SEO 메타데이터 관리
 - `sppt product fields get|set|apply cafe24` — Cafe24 SEO/discovery 필드 안전 조회·수정
 - `sppt product image get|set|add|delete|support` — 이미지 관리
-- `sppt product catalog [--local]` — 상품 카탈로그 브라우징
-- `sppt product unmapped [--local]` — 미매핑 상품 목록
-- `sppt product rules [set <file>] [--local]` — 분류 규칙 조회/설정
-- `sppt product parse` — CatalogProduct 분류 미리보기·후보 검토·적용
-- `sppt product parse --local --file <mapping.csv>` — 로컬 호환 카탈로그 임포트
-- `sppt product mapping [--edit N] [--confirm N|all] [--confirmed] [--json]` — SKU 매핑 관리
-- `sppt product candidates` — 매핑 후보 조회
+- `sppt product parse` / `sppt product parse --dry-run` — 상품 intake 기본 미리보기
+- `sppt product parse --apply --confirm [--run-id <runId>]` — 확실한 기존 옵션 매핑 적용
+- `sppt product parse status <runId>` — 실행 결과·pending·충돌 상태 조회
+- `sppt product master list|create|update` — 마스터 상품 관리
+- `sppt product master option list|create|update` — 마스터 상품 옵션·BOM 관리
+- `sppt product master classification list|create|update|archive|restore` — 분류 관리
+- `sppt product mapping unmapped` — durable 미매핑 검토 큐 조회
+- `sppt product mapping map|unmap <sourceOfferingId>` — preview 후 confirm하는 매핑 변경
+- `sppt product mapping history` — 매핑 변경 이력 조회
+- `sppt product mapping rollback` — `--changeset <changeSetId> --confirm` 또는
+  `--at <timestamp> --confirm`으로 이력 기반 rollback
+- `sppt product mapping rules show|set|publish` — `product_rules` 정책 lifecycle
 
 ### 주문/송장
 - `sppt order list|get|confirm|cancel|return <channel>` — 주문 관리
