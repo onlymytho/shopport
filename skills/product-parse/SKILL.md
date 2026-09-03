@@ -37,36 +37,48 @@ sppt auth whoami
 ### 명령
 
 ```bash
-# 기본 동작은 dry-run이며 변경하지 않습니다.
+# 기본 동작은 preview run입니다. 마스터·판매채널 매핑은 변경하지 않지만
+# 실행 기록·snapshot·후보·검토 상태는 저장합니다.
 sppt product parse
 sppt product parse --dry-run
 
-# 적용은 반드시 두 플래그를 함께 명시합니다.
-sppt product parse --apply --confirm
+# 권장 순서: preview 결과를 확인한 뒤 같은 run을 명시해 적용합니다.
+sppt product parse status <runId>
 sppt product parse --apply --confirm --run-id <runId>
 
-# 실행 결과·pending 항목·적용/충돌 상태는 읽기 전용으로 확인합니다.
+# 새 run 생성부터 적용까지 한 번에 수행하는 사전 승인된 자동 실행
+sppt product parse --apply --confirm
+
+# 실행 결과·pending 항목·적용/충돌 상태 확인
 sppt product parse status <runId>
 ```
 
 ### 처리 순서
 
-1. 지정한 source/channel account와 처리 범위의 미처리·미매핑 SourceOffering을 읽습니다.
-2. `product mapping rules`에 publish된 `product_rules`를 실행 정책으로 컴파일하고 source,
-   policy, master snapshot을 고정합니다.
+1. 지정한 source/channel account와 state 범위의 SourceOffering을 읽습니다. 기본 state는
+   `unprocessed`이며, 미매핑만 처리하려면 `--state unmapped`를 지정합니다.
+2. `product mapping rules publish`로 활성화된 compiled `product_rules` bundle을 source,
+   policy, master snapshot과 함께 고정합니다.
 3. 상품명·옵션명·raw SKU를 정규화해 기존 마스터 옵션 후보를 찾습니다.
 4. raw SKU 또는 명시 정책으로 하나의 active ProductOption이 확정되고 유효한 SKU/BOM,
    revision 조건을 만족하는 경우에만 자동 적용 대상으로 삼습니다.
 5. 모호한 identity, SKU 부족, BOM 미완성, 분류 충돌은 `product mapping unmapped`의
    durable review case로 남깁니다.
-6. 자동 적용된 매핑 변경은 서버가 하나의 `changeSetId`로 묶어 이력에 기록합니다.
+6. 현재 매핑과 같은 대상이면 `unchanged`로 기록하고 매핑을 다시 쓰지 않습니다. 다른
+   대상이 더 강하게 검출되면 `mapping_change` 후보로 만들지만 preview 단계에서는 변경하지
+   않습니다.
+7. 최종 적용이 승인된 매핑 변경은 서버가 하나의 `changeSetId`로 묶어 이력에 기록합니다.
 
-기본 parse와 `--dry-run`은 계획·후보·pending만 만들며 마스터나 매핑을 변경하지 않습니다.
-`--apply --confirm` 없이는 적용하지 않습니다. `--run-id`를 지정하면 같은 input manifest,
-plan hash, policy hash인 실행만 적용하며 snapshot이나 revision이 달라지면 중단합니다.
-지정하지 않으면 서버가 새 run과 snapshot을 만들고 바로 적용합니다.
+기본 parse와 `--dry-run`은 마스터 상품·옵션·분류와 판매채널 매핑을 변경하지 않습니다. 대신
+run, input manifest, 후보, action plan, review case와 SourceOffering의 parse 상태를 저장할 수
+있습니다. `--apply --confirm` 없이는 매핑을 적용하지 않습니다. 최종 매핑 전에 확인을 받으려면
+반드시 `parse → status → parse --apply --confirm --run-id` 순서를 사용합니다. `--run-id`를
+지정하면 해당 run의 input manifest hash, policy hash, source mapping revision을 다시 검증하고
+snapshot이나 revision이 달라지면 중단합니다. `--run-id`를 생략한 `--apply --confirm`은 새 run을
+만들고 결과를 기다린 뒤 같은 명령 안에서 적용하므로, 별도 review가 끝난 뒤 적용해야 하는 경우에는
+사용하지 않습니다.
 
-신규 CatalogProduct·ProductOption·classification node 생성, 마스터 field 수정, BOM 구성
+신규 마스터 상품·ProductOption·classification node 생성, 마스터 field 수정, BOM 구성
 변경은 parse가 자동 적용하지 않습니다. 이 결과는 pending review로 남기고 다음 순서로
 처리합니다.
 
@@ -81,10 +93,25 @@ sppt product mapping map <sourceOfferingId> --product-option-id <masterOptionId>
 `status`는 run 상태와 pending 사유를 확인하는 읽기 전용 명령입니다. parse 결과를 임의의
 후보 선택으로 확정하지 말고, 신규 master·classification·BOM이 필요한지 먼저 판단합니다.
 
+### 이미 매핑된 항목의 처리
+
+- 현재 매핑 대상과 parse 후보가 같으면 `unchanged`로 처리합니다. 기존 decision과 매핑을
+  덮어쓰지 않습니다.
+- 현재 매핑과 다른 대상이 더 강하게 검출되면 `mapping_change`로 표시합니다. preview에서는
+  기존 매핑을 유지하며, `status`에서 대상과 근거를 확인한 뒤 `--apply --confirm --run-id`로
+  명시적으로 승인해야 합니다.
+- 적용 조건은 신규 매핑과 동일하게 canonical identity, 동일한 mapping revision, active
+  ProductOption, 실행 가능한 SKU/BOM입니다. 조건이 맞지 않거나 판단이 모호하면 기존 매핑을
+  유지하고 conflict 또는 review case로 남깁니다.
+- 재매핑이 적용되면 기존 decision을 삭제하지 않고 supersedes 관계의 새 decision과 새
+  `changeSetId`를 기록합니다. 잘못된 재매핑은 `product mapping rollback`으로 되돌립니다.
+
 ## 2. product master: 확정 데이터 관리
 
 마스터 상품과 옵션은 이 영역에서 명시적으로 생성·수정합니다. 생성·수정에는 optimistic
-revision과 idempotency를 사용하고, 옵션 전체 구성 변경은 preview 후 적용합니다.
+revision과 idempotency를 사용합니다. 옵션 create/update CLI는 현재 product revision과 옵션
+revision을 서버에서 읽어 내부적으로 configuration preview를 만든 뒤 즉시 적용합니다. 별도
+review 후 confirm하는 최종 매핑 명령과는 다른 동작입니다.
 
 ```bash
 sppt product master list --query "멀티쿠커"
@@ -94,7 +121,7 @@ sppt product master update <productId> --revision <n> --name "알텐바흐 316Ti
 sppt product master option list <productId>
 sppt product master option create <productId> \
   --name "20cm" --option-type variant --sku-id <skuId>
-sppt product master option update <productId> <optionId> --revision <n> \
+sppt product master option update <productId> <optionId> \
   --name "20cm 본품"
 ```
 
@@ -112,9 +139,8 @@ sppt product master classification archive --kind category <id> --revision <n>
 sppt product master classification restore --kind category <id> --revision <n>
 ```
 
-상품 분류 연결이 빠져 있으면 매핑과 별개로 `classification incomplete` 상태를 유지합니다.
-parse는 분류 후보만 pending으로 제안하며, 분류 디렉터리와 상품 연결은 master에서
-확정합니다.
+상품 분류 연결이 빠져 있으면 매핑과 별개로 분류 연결 필요 review issue로 남깁니다. parse는
+분류 후보만 pending으로 제안하며, 분류 디렉터리와 상품 연결은 master에서 확정합니다.
 
 ### 옵션과 BOM
 
@@ -200,7 +226,8 @@ sppt product mapping rules publish
 3. raw SKU, canonical identity, 명시 정책으로 대상이 하나로 확정되지 않으면 선택하지 않습니다.
 4. 신규 master, classification, option, BOM 변경은 pending review로 남기고 master에서 먼저
    확정합니다.
-5. snapshot, policy hash, plan hash, revision이 확인 시점과 다르면 재실행하거나 충돌로 보고합니다.
+5. input manifest hash, policy hash, source mapping revision이 확인 시점과 다르면 재실행하거나
+   충돌로 보고합니다.
 6. 자동화가 생성한 `changeSetId`와 history를 보존하고, 기존 decision을 덮어쓰지 않습니다.
 7. 적용 후 `sppt product parse status <runId>`와 `sppt product mapping unmapped`로 pending,
    conflict, projection 상태를 다시 확인합니다.
